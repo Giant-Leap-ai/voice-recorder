@@ -2,14 +2,15 @@
 
 export const CONFIG = {
   recipient: "luke@onegiantleap.ai",
-  protocolVersion: "whisper-v1",
-  consentVersion: "v1",
+  protocolVersion: "whisper-v2",
+  consentVersion: "v2",
 };
 
+// v2 (2026-11-07): recordings are never released publicly; the optional public-release
+// checkbox from v1 was removed.
 export const CONSENT = {
   required:
-    "I agree to these recordings being used for Luke's speech research project. Results may be published; my name won't be. I can ask for my recordings to be deleted at any time.",
-  release: "I also agree to my recordings being released publicly for research under CC BY 4.0.",
+    "I agree to these recordings being used for Luke's speech research project. The recordings stay private and are never published or shared publicly; only summary results may be published, and my name won't appear. I can ask for my recordings to be deleted at any time.",
 };
 
 export const VOICES = {
@@ -46,7 +47,7 @@ const HARVARD = {
     "The box was thrown beside the parked truck.",
     "The hogs were fed chopped corn and garbage.",
     "Four hours of steady work faced us.",
-    "A large size in stockings is hard to sell.",
+    "A saw is a tool used for making boards.", // replaces a list 1 sentence (v2); from Harvard list 6
   ],
   2: [
     "The boy was there when the sun rose.",

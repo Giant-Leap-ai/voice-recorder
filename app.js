@@ -214,6 +214,7 @@ function welcome() {
   screen(`<h1>Voice recording</h1>
     <p>Participant <strong>${esc(S.pid)}</strong>. This takes about 20 minutes and records you reading short messages in three voices: normal, whispered, and quiet. The last part is read from across the room.</p>
     <p>Everything stays on this phone until you send it yourself at the end. Nothing is uploaded by this page.</p>
+    <p>Your recordings are private: they're used only for this research and are never posted or shared publicly.</p>
     <p>You'll need a quiet room, a table, and 1.5 to 2 metres of space.</p>
     ${DEMO ? `<p class="warn">Demo mode: synthetic audio, no microphone.</p>` : ""}
     <button id="go" class="primary">Start</button>`);
@@ -223,11 +224,10 @@ function welcome() {
 function consent() {
   screen(`<h1>Consent</h1>
     <label class="check"><input type="checkbox" id="c1"> <span>${esc(CONSENT.required)}</span></label>
-    <label class="check"><input type="checkbox" id="c2"> <span>${esc(CONSENT.release)} <em>(optional)</em></span></label>
     <button id="go" class="primary" disabled>Continue</button>`);
   $("#c1").addEventListener("change", (e) => ($("#go").disabled = !e.target.checked));
   on("#go", async () => {
-    S.consent = { version: CONFIG.consentVersion, use: true, publicRelease: $("#c2").checked, text: CONSENT, at: new Date().toISOString() };
+    S.consent = { version: CONFIG.consentVersion, use: true, publicRelease: false, text: CONSENT, at: new Date().toISOString() };
     await save(); details();
   });
 }
